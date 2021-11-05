@@ -20,7 +20,15 @@ The team proposal can be found in [proposal.md](Proposal.md) file.
 
 - [SMAI Project - Neural Nearest Neighbors Networks](#smai-project---neural-nearest-neighbors-networks)
     - [Table of contents](#table-of-contents)
+    - [Setup](#setup)
+        - [Python environment](#python-environment)
     - [Contents](#contents)
+
+## Setup
+
+### Python environment
+
+Tensorflow CPU can be set up using the simple install instructions on [tensorflow website](https://www.tensorflow.org/install/pip). To check out GPU instructions for Windows, see the file [TensorFlow_Windows_GPU_Setup.md](./TensorFlow_Windows_GPU_Setup.md).
 
 ## Contents
 
