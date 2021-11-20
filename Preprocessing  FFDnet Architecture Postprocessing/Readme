@@ -13,4 +13,4 @@ These changes shall be made before training the model
 4)Recreate_Image_from_patches : This Notebook is used to recerate the image from the patches after the noise is removed from patches.
 
 
-Upcoming work : After the training is done we need to compare the orignal image with the recerated image 
+Upcoming work : After the training is done we need to compare the orignal image with the recerated image.
