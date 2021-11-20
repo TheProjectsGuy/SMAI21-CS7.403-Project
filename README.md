@@ -2,6 +2,8 @@
 
 Project for `Statistical Methods in AI`, course `CS7.403` at IIIT Hyderabad. Team details are as follows
 
+**Project Name**: Neural Nearest Neighbors Networks <br>
+**Project Number**: 1 <br>
 **Team Name**: Chaos <br>
 **Team Number**: 28
 
@@ -14,7 +16,7 @@ Team members are listed below (ascending name)
 | Jhansi Mallela | 2021802001 | jhansi.mallela@research.iiit.ac.in |
 | Nayan Anand | 2021701014 | nayan.anand@research.iiit.ac.in |
 
-The team proposal can be found in [proposal.md](Proposal.md) file.
+The team proposal can be found in [Proposal.pdf](./Proposal.pdf) file.
 
 ## Table of contents
 
@@ -36,4 +38,5 @@ The contents of this folder are listed below
 
 | Item | Description |
 | :--- | :-- |
-| [Papers](./Papers/README.md) | Papers used in this project |
+| [Papers](./Papers/README.md) | Papers used in this project (as a reference) |
+| [Data Loaders](./DataLoaders/README.md) | Loaders for the datasets used in this repository |
