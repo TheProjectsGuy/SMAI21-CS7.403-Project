@@ -1,3 +1,11 @@
 # Ignore test files
 test_*
 test*
+
+# Ignore the data directory
+data/
+Data/
+
+# Ignore build files
+__pycache__/
+*.pyc
