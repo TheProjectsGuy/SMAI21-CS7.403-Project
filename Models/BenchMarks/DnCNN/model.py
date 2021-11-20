@@ -1,3 +1,5 @@
+# From: https://github.com/wbhu/DnCNN-tensorflow/blob/master/model.py
+
 import time
 from glob import glob
 import numpy as np
