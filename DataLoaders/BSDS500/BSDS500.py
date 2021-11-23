@@ -25,10 +25,16 @@ class GroundTruthType(TypedDict):
     # Boundaries for every annotator (per image)
     boundaries: list[np.ndarray]
 
+# Full file paths (images and ground truth)
+class PathsDict(TypedDict):
+    img: list[str]
+    gt: list[str]
+
 # Dataset dictionary for training, testing or validation set
 class SingleDataSetDict(TypedDict):
     images: list[np.ndarray]
     groundTruth: GroundTruthType
+    paths: PathsDict
 
 # Type of the entire dataset (as dictionary)
 class DataSetDict(TypedDict):
@@ -54,7 +60,7 @@ class BSDS500_DataSet:
     # ZIP file location (desired) on system
     __dataset_zip_file = "~/Downloads/Datasets/BSR_bsds500.tgz"
     # Destination folder (for extracting)
-    __destination_folder = "./Data/"
+    __destination_folder = "~/Downloads/Datasets/BSDS500/"
     # URL for dataset
     __download_url = r"http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/BSR_bsds500.tgz"
     # Data location (in extract)
@@ -90,7 +96,6 @@ class BSDS500_DataSet:
                     file.close()
                     print(f"Extracted at: {self.zip_extract_loc}")
         else:
-            # TODO: Maybe have `tf.keras.utils.get_file` do this
             raise FileNotFoundError(
                 f"Dataset not present in '{self.zip_location}'. "
                 f"Download it from '{self.data_uri}' at the location")
@@ -117,7 +122,7 @@ class BSDS500_DataSet:
                     - "boundaries": List of list of annotated
                         boundaries for each sample
         """
-        # Load image, segmentation, boundary sample
+        # Load image, segmentation, boundary sample given the path
         def load_sample(img_path, gt_path):
             """
                 Loads a single sample from the corresponding files
@@ -148,96 +153,87 @@ class BSDS500_DataSet:
                 for i in range(y_ann)]
             return x_img_np, y_ann, y_seg, y_bdr
 
+        # Given paths, retrieve data
+        def ret_data(img_path, gt_path):
+            """
+                Retrieves data samples form paths
+                
+                Paramters:
+                - img_path: str    Images path (*.jpg files)
+                - gt_path:  str    Ground truth path (*.mat files)
+
+                Returns:
+                - gp_data: SingleDataSetDict    Data retrieved
+            """
+            # Data
+            x_imgs = []     # List of images
+            y_anns = []     # Number of annotations
+            y_segs = []     # List of list of segmentation annotations
+            y_bdrs = []     # List of list of boundary annotations
+            # Samples
+            img_samples: list[str] = glob.glob(img_path + "/*.jpg")
+            gt_samples: list[str] = glob.glob(gt_path + "/*.mat")
+            # Assuming files with the same number correspond
+            img_samples.sort()
+            gt_samples.sort()
+            # Load samples into data
+            for img_s, gt_s in zip(img_samples, gt_samples):
+                x, ya, ys, yb = load_sample(img_s, gt_s)
+                # Record all data
+                x_imgs.append(x)
+                y_anns.append(ya)
+                y_segs.append(ys)
+                y_bdrs.append(yb)
+            gp_data: SingleDataSetDict = {
+                # Training images
+                "images": copy.deepcopy(x_imgs),
+                # Ground truths
+                "groundTruth": {
+                    "na": copy.deepcopy(y_anns),
+                    "segmentation": copy.deepcopy(y_segs),
+                    "boundaries": copy.deepcopy(y_bdrs)
+                },
+                # Corresponding paths
+                "paths": {
+                    "img": img_samples,
+                    "gt": gt_samples
+                }
+            }
+            return gp_data
+
         # Path to data
         data_path = self.zip_extract_loc + "/" + \
             BSDS500_DataSet.__data_loc
         # --- Load training data ---
-        x_imgs = []     # List of images
-        y_anns = []     # Number of annotations
-        y_segs = []     # List of list of segmentation annotations
-        y_bdrs = []     # List of list of boundary annotations
         img_path = os.path.realpath(data_path + \
             BSDS500_DataSet.__x_tr_loc)
         gt_path = os.path.realpath(data_path + \
             BSDS500_DataSet.__y_tr_loc)
-        img_samples: list[str] = glob.glob(img_path + "/*.jpg")
-        gt_samples: list[str] = glob.glob(gt_path + "/*.mat")
-        # Assuming files with the same number correspond
-        img_samples.sort()
-        gt_samples.sort()
-        for img_s, gt_s in zip(img_samples, gt_samples):
-            x, ya, ys, yb = load_sample(img_s, gt_s)
-            # Record all data
-            x_imgs.append(x)
-            y_anns.append(ya)
-            y_segs.append(ys)
-            y_bdrs.append(yb)
-        print(f"Loaded {len(y_anns)} training samples")
+        gp_data = ret_data(img_path, gt_path)
+        ns = len(gp_data["images"])
+        print(f"Loaded {ns} training samples")
         # Save training data
-        self.data["training"] = {
-            "images": copy.deepcopy(x_imgs),
-            "groundTruth": {
-                "na": copy.deepcopy(y_anns),
-                "segmentation": copy.deepcopy(y_segs),
-                "boundaries": copy.deepcopy(y_bdrs)
-            }
-        }
+        self.data["training"] = copy.deepcopy(gp_data)
         # --- Load test data ---
-        x_imgs = []
-        y_anns = []
-        y_segs = []
-        y_bdrs = []
         img_path = os.path.realpath(data_path + \
             BSDS500_DataSet.__x_ts_loc)
         gt_path = os.path.realpath(data_path + \
             BSDS500_DataSet.__y_ts_loc)
-        img_samples: list[str] = glob.glob(img_path + "/*.jpg")
-        gt_samples: list[str] = glob.glob(gt_path + "/*.mat")
-        for img_s, gt_s in zip(img_samples, gt_samples):
-            x, ya, ys, yb = load_sample(img_s, gt_s)
-            # Record all data
-            x_imgs.append(x)
-            y_anns.append(ya)
-            y_segs.append(ys)
-            y_bdrs.append(yb)
-        print(f"Loaded {len(y_anns)} test samples")
-        # Save training data
-        self.data["test"] = {
-            "images": copy.deepcopy(x_imgs),
-            "groundTruth": {
-                "na": copy.deepcopy(y_anns),
-                "segmentation": copy.deepcopy(y_segs),
-                "boundaries": copy.deepcopy(y_bdrs)
-            }
-        }
+        gp_data = ret_data(img_path, gt_path)
+        ns = len(gp_data["images"])
+        print(f"Loaded {ns} test samples")
+        # Save test data
+        self.data["test"] = copy.deepcopy(gp_data)
         # --- Load validation data ---
-        x_imgs = []
-        y_anns = []
-        y_segs = []
-        y_bdrs = []
         img_path = os.path.realpath(data_path + \
             BSDS500_DataSet.__x_vl_loc)
         gt_path = os.path.realpath(data_path + \
             BSDS500_DataSet.__y_vl_loc)
-        img_samples: list[str] = glob.glob(img_path + "/*.jpg")
-        gt_samples: list[str] = glob.glob(gt_path + "/*.mat")
-        for img_s, gt_s in zip(img_samples, gt_samples):
-            x, ya, ys, yb = load_sample(img_s, gt_s)
-            # Record all data
-            x_imgs.append(x)
-            y_anns.append(ya)
-            y_segs.append(ys)
-            y_bdrs.append(yb)
-        print(f"Loaded {len(y_anns)} validation samples")
+        gp_data = ret_data(img_path, gt_path)
+        ns = len(gp_data["images"])
+        print(f"Loaded {ns} validation samples")
         # Save training data
-        self.data["validation"] = {
-            "images": copy.deepcopy(x_imgs),
-            "groundTruth": {
-                "na": copy.deepcopy(y_anns),
-                "segmentation": copy.deepcopy(y_segs),
-                "boundaries": copy.deepcopy(y_bdrs)
-            }
-        }
+        self.data["validation"] = copy.deepcopy(gp_data)
         return self.data
 
 # %%

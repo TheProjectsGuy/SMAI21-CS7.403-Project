@@ -1,0 +1,14 @@
+name: smai-cs7-403
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - numpy
+  - matplotlib
+  - jupyter
+  - cvxpy
+  - scipy
+  - sympy
+  - scikit-learn
+  - pandas
+  - pylint
