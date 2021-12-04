@@ -74,7 +74,7 @@ sig_nums = 17   # Number of samples U[sig_range] for noise
 # -- Model parameters --
 cnn_depth = 20  # Depth of model
 # Checkpointing
-ckpt_path = "./checkpoints/24_nov_21/cp_{epoch}.ckpt"
+ckpt_path = "./checkpoints/4_dec_21_2/cp_{epoch}.ckpt"
 ckpt_dir = os.path.dirname(ckpt_path)
 # -- Other parameters: Change only if you know it! --
 stride_c = [53, 54] # Major, Minor strides (patch generation)
@@ -129,7 +129,7 @@ cp_callback = callbacks.ModelCheckpoint(ckpt_path, verbose=1,
     save_weights_only=True)
 # Train to find residuals for given noisy image
 history = model.fit(x_fimgs, r_fimgs, batch_size=num_batches, 
-    epochs=5, verbose=2, callbacks=[cp_callback])
+    epochs=50, verbose=2, callbacks=[cp_callback])
 
 # %%
 
@@ -162,12 +162,14 @@ mse_loss = losses.MeanSquaredError()
 mse_loss(y_fimgs[i], y_predf).numpy()
 
 # %% Load model
-model_path = f"{ckpt_dir}/model"
+# model_path = f"{ckpt_dir}/model"
+model_path = "./checkpoints/24_nov_21/model"
 # Loaded model
 _model_loaded = models.load_model(model_path)
 # Load weights
-_model_loaded.load_weights(ckpt_path.format(epoch=5))
+_model_loaded.load_weights(ckpt_path.format(epoch=50))
 print("Model loaded again")
+model = _model_loaded
 
 # %% Test performance (on loaded model)
 plt.figure(figsize=(10, 10))
