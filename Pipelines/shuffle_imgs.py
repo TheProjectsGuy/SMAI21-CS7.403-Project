@@ -1,6 +1,8 @@
 # Functions to handle shuffling or iterables
 """
     Functions to shuffle images (while keeping correspondence)
+
+    Creator: TheProjectsGuy
 """
 
 # %% Import everything

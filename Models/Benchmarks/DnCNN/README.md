@@ -51,7 +51,8 @@ The contents of this folder are summarized as follows
 
 | Checkpoint File | Timestamp | Description |
 | :--- | :---- | :---- |
-| [./checkpoints/24_nov_21/cp_5.ckpt](./checkpoints/24_nov_21/README.txt) | 21 November 2021 at 1:30 AM | Checkpoint of the initial model (stored in [./checkpoints/24_nov_21/model](./checkpoints/24_nov_21/model/)). For testing and further training purposes. The effects are actually visible despite using so little data. |
+| [./checkpoints/24_nov_21/cp_5.ckpt](./checkpoints/24_nov_21/README.txt) | 21 November 2021 at 1:30 AM | Checkpoint of the initial model (stored in [./checkpoints/24_nov_21/model](./checkpoints/24_nov_21/model/)). For testing and further training purposes. The effects are actually visible despite using so little epochs. |
+| [./checkpoints/4_dec_21_2/cp_50.ckpt](./checkpoints/4_dec_21_2/README.txt) | 4 December 2021 at 9:45 PM | The same model as in the checkpoint above, but trained for 65 epochs. |
 
 ## References
 
@@ -59,3 +60,5 @@ The contents of this folder are summarized as follows
     - [cszn/DnCNN](https://github.com/cszn/DnCNN): Original repository by the authors (link included in paper) implementing the DnCNN in MATLAB (using [MatConvNet](https://www.vlfeat.org/matconvnet/)) and Python (using [PyTorch](https://pytorch.org/))
     - [aGIToz/KerasDnCNN](https://github.com/aGIToz/KerasDnCNN): Implementing `DnCNN-S` (gaussian denoising with known parameters - sigma - on grayscale images) using Keras. Has the [Set12](https://github.com/aGIToz/KerasDnCNN/tree/master/Set12) images.
     - [wbhu/DnCNN-tensorflow](https://github.com/wbhu/DnCNN-tensorflow): Implementing DnCNN in tensorflow (version `1.4`). This is probably outdated since TensorFlow 1 is no longer supported.
+
+[![Developer: TheProjectsGuy](https://img.shields.io/badge/Developer-TheProjectsGuy-blue)](https://github.com/TheProjectsGuy)

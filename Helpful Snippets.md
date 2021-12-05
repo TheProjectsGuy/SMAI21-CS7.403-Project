@@ -46,3 +46,5 @@ for dev in devs:
     if dev.device_type == "GPU":
         print("CUDA acceleration available")
 ```
+
+[![Developer: TheProjectsGuy](https://img.shields.io/badge/Developer-TheProjectsGuy-blue)](https://github.com/TheProjectsGuy)

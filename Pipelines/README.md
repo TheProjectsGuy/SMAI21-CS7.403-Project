@@ -6,11 +6,21 @@ Contains pipelines for handling data
 
 - [Pipelines for Data Handling](#pipelines-for-data-handling)
     - [Table of contents](#table-of-contents)
+    - [Contents](#contents)
     - [Image Pipelines](#image-pipelines)
         - [Adding Noise](#adding-noise)
         - [Generate Patches](#generate-patches)
         - [Shuffling images](#shuffling-images)
-    - [Contents](#contents)
+
+## Contents
+
+Contains the following files
+
+| Item Name | Description |
+| :---- | :---- |
+| [img_patches.py](./img_patches.py) | Image patches |
+| [img_add_noise.py](./img_add_noise.py) | Noise addition to images |
+| [shuffle_imgs.py](./shuffle_imgs.py) | Shuffling images |
 
 ## Image Pipelines
 
@@ -160,13 +170,3 @@ To shuffle images in a list, use the following function accordingly
             an image of the same shape as it was
     """
     ```
-
-## Contents
-
-Contains the following files
-
-| Item Name | Description |
-| :---- | :---- |
-| [img_patches.py](./img_patches.py) | Image patches |
-| [img_add_noise.py](./img_add_noise.py) | Noise addition to images |
-| [shuffle_imgs.py](./shuffle_imgs.py) | Shuffling images |

@@ -1,6 +1,8 @@
 # Functions to handle image patches
 """
     Functions that handle patch extraction from images
+
+    Creator: TheProjectsGuy
 """
 
 # %% Import everything

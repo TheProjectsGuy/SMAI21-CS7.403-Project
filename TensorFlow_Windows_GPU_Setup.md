@@ -167,3 +167,5 @@ for k in sys_details:
 ```
 
 This should show the physical graphics cards being detected by TensorFlow and the build information.
+
+[![Developer: TheProjectsGuy](https://img.shields.io/badge/Developer-TheProjectsGuy-blue)](https://github.com/TheProjectsGuy)

@@ -1,6 +1,8 @@
 # Functions to handle (artificial) image noising
 """
     Functions that add noise to images
+
+    Creator: TheProjectsGuy
 """
 
 # %% Import everything
