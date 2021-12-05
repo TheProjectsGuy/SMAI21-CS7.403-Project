@@ -15,7 +15,8 @@ The datasets included in this repository are listed below
 
 | Dataset | Description |
 | :--- | :---- |
-| [BSDS500](./BSDS500/README.md) | Berkeley Segmentation Dataset 500 |
+| [BSDS500](./BSDS500/README.md) | Berkeley Segmentation Dataset 500. Tested on the DnCNN model. |
+| [DIV2K](./DIV2K/README.md) | `Placeholder` |
 
 ## Usage
 
