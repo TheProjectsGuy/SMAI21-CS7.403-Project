@@ -18,3 +18,4 @@ The following Benchmark models are implemented in the [Benchmarks](./Benchmarks/
 | :---- | :----- |
 | [DnCNN](./Benchmarks/DnCNN/README.md) | CNN for De-noising images with gaussian noise (blind de-noising). |
 | [VDSR](./Benchmarks/VDSR/README.md) | `Placeholder` |
+| [FFDNet](./Benchmarks/FFDNet/README.md) | `Placeholder` |

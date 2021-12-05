@@ -21,6 +21,7 @@ Contains the following files
 | [img_patches.py](./img_patches.py) | Image patches |
 | [img_add_noise.py](./img_add_noise.py) | Noise addition to images |
 | [shuffle_imgs.py](./shuffle_imgs.py) | Shuffling images |
+| [BSDS500_FFDNet folder](./BSDS500_FFDNet/README.md) | Contains notebooks for BSDS500 pipeline (for training FFDNet) |
 
 ## Image Pipelines
 
