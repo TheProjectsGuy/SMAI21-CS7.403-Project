@@ -13,4 +13,7 @@ Training session 2 on 4th December 2021 at 7:45 PM
         Checkpoint: ./4_dec_21/cp_10    (10 epochs of training done)
 
 Training session 3 on 4th December 2021 at 9:00 PM
-    
+    Till 4th December 2021 at 10:30 PM
+    Directory: ./4_dec_21_2
+        Model: ./24_nov_21/model
+        Checkpoint: ./4_dec_21_2/cp_50    (50 epochs of training done
