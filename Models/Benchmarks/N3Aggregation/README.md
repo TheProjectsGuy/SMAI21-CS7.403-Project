@@ -97,4 +97,4 @@ For **Training**: The remaining 80 persent images are used for training.
     ```
 
 
-[![Developer: PaRABOY(AMAN SINGH)](https://img.shields.io/badge/Developer-TheProjectsGuy-blue)](https://github.com/ParaB0Y)
+![Developer: ParaB0Y(aman singh)](https://img.shields.io/badge/Developer-ParaB0Y(aman singh)-blue)
