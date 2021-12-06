@@ -1,0 +1,7 @@
+# Ignore test files
+test_*
+test*
+
+# Ignore the data directory
+data/
+Data/

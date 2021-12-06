@@ -1,0 +1,2 @@
+# Ignore checkpoints 1 through 4 (5 is best)
+cp_[1-4].ckpt.*

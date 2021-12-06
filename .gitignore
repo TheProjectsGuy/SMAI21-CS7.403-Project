@@ -1,0 +1,9 @@
+# Ignore the VSCode folder
+/.vscode/
+
+# Ignore the test folder
+/Test/
+
+# Ignore build files
+__pycache__/
+*.pyc

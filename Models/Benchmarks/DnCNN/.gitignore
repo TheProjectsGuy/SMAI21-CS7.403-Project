@@ -1,0 +1,4 @@
+# Ignore the Archives folder
+Archives/
+# Ignore test files
+test*.py
