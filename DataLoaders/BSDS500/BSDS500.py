@@ -2,6 +2,8 @@
     The BSDS500 Dataset Module
 
     Home page: https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/resources.html
+
+    Creator: TheProjectsGuy
 """
 
 # %% Import modules

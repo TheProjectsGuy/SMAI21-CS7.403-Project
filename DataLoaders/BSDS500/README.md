@@ -196,3 +196,5 @@ Contents of this folder are summarized as follows
 | [BSDS500.py](./BSDS500.py) | Contains the main class `BSDS500_DataSet` (back end) |
 | [def_load_dataset.py](./def_load_dataset.py) | Contains functions to load the dataset (front end) |
 | [BSDS_val68_list.txt](./BSDS_val68_list.txt) | A file to describe the file-names of the BSD68 validation images |
+
+[![Developer: TheProjectsGuy](https://img.shields.io/badge/Developer-TheProjectsGuy-blue)](https://github.com/TheProjectsGuy)

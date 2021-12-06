@@ -1,6 +1,8 @@
 # Functions to load the BSDS500 dataset
 """
     Contains functions to load the BSDS500 dataset
+
+    Creator: TheProjectsGuy
 """
 
 # %% Import everything

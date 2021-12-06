@@ -2,6 +2,8 @@
 # BSDS500 Dataset Loader
 """
     All handlers for BSDS500 dataset
+
+    Creator: TheProjectsGuy
 """
 
 # Main dataset and class
