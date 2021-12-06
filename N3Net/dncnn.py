@@ -16,7 +16,7 @@ from tensorflow.keras.layers import Conv2D, BatchNormalization, ReLU
 # %%
 class DnCNN(Model):
     def __init__(self, s=80, nk=64, ks=(3,3), nc_in = 3, nc_out = 8, 
-        ndepth=6, residual = True, *args, **kwargs):
+        nd=6, residual = True, *args, **kwargs):
         """
             Creates and returns a DnCNN model.
 
@@ -35,9 +35,9 @@ class DnCNN(Model):
             - nc_out: int       default: 8
                 The number of output channels for the model (for the
                 last layer to output).
-            - ndepth: int       default: 6
+            - nd: int       default: 6
                 The number of layers to use for DnCNN model. Note that
-                `ndepth-1` layers are (Conv + BN + ReLU) and the final
+                `nd-1` layers are (Conv + BN + ReLU) and the final
                 layer is just (Conv).
             - residual: bool    default: True
                 If true, then the residual connection is used. Here,
@@ -52,24 +52,25 @@ class DnCNN(Model):
         self.nc_out = nc_out    # Number of output channels
         self.nc_in = nc_in      # Number of input channels
         # Model
-        self.model = models.Sequential(name=f"{self.name}_seq")
+        model = models.Sequential(name=f"{self.name}_seq")
         # All the Conv + BN + ReLU layers
-        self.model.add(Conv2D(nk, ks, padding='same', 
+        model.add(Conv2D(nk, ks, padding='same', 
             input_shape=(s, s, nc_in)))
-        self.model.add(BatchNormalization())
-        self.model.add(ReLU())
-        for _ in range(1, ndepth-1, 1):
-            self.model.add(Conv2D(nk, ks, padding='same'))
-            self.model.add(BatchNormalization())
-            self.model.add(ReLU())
+        model.add(BatchNormalization())
+        model.add(ReLU())
+        for _ in range(1, nd-1):
+            model.add(Conv2D(nk, ks, padding='same'))
+            model.add(BatchNormalization())
+            model.add(ReLU())
         # Final convolution layer
-        self.model.add(Conv2D(nc_out, ks, padding='same'))
+        model.add(Conv2D(nc_out, ks, padding='same'))
+        self.seq_model = model  # Sequential model (no residual)
 
     # Call function
     def call(self, inputs, training=None, mask=None):
         # Forward pass
         x = inputs
-        x = self.model(x)
+        x = self.seq_model(x, training, mask)   # Encapsulated
         if self.residual:
             max_layers = min(self.nc_in, self.nc_out)
             x[:,:,:,:max_layers] += inputs[:,:,:,:max_layers]
