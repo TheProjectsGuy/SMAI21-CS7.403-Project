@@ -1,3 +1,4 @@
+#dev=nayan
 The flow of execution is as follows :
 1)BSDS500_loader_and_patch_generator.ipynb : This notebook loads the BSDS500 dataset and generates patches for the train and test sets
 2)Mixing_of_noise_in_dataset : This notebook is used to mix the noise to the patches created in step -1 and then recreate the training and testing set for the FFDnet
