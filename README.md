@@ -48,3 +48,9 @@ Additionally, the repository also contains the following
 | Item | Description |
 | :--- | :-- |
 | [Helpful Snippets.md](./Helpful%20Snippets.md) | Some snippets for reference |
+
+The following is being worked upon
+
+| Item | Description |
+| :--- | :-- |
+| [N3Net](./N3Net/README.md) | N3Net with DnCNN |
