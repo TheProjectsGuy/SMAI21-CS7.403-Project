@@ -18,6 +18,7 @@ In this folder, the `CDnCNN-B` model is implemented. This is the model used to s
         - [Pipeline](#pipeline)
     - [Contents](#contents)
     - [Checkpoints](#checkpoints)
+    - [Results](#results)
     - [References](#references)
 
 ## Data
@@ -53,6 +54,16 @@ The contents of this folder are summarized as follows
 | :--- | :---- | :---- |
 | [./checkpoints/24_nov_21/cp_5.ckpt](./checkpoints/24_nov_21/README.txt) | 21 November 2021 at 1:30 AM | Checkpoint of the initial model (stored in [./checkpoints/24_nov_21/model](./checkpoints/24_nov_21/model/)). For testing and further training purposes. The effects are actually visible despite using so little epochs. |
 | [./checkpoints/4_dec_21_2/cp_50.ckpt](./checkpoints/4_dec_21_2/README.txt) | 4 December 2021 at 9:45 PM | The same model as in the checkpoint above, but trained for 65 epochs. |
+
+## Results
+
+Some results can be seen below (these are from the latest checkpoint)
+
+<img src="./fig/ex1.png" alt="Patch example 1" style="background-color:#ffffff;" />
+
+<img src="./fig/ex2.png" alt="Patch example 2" style="background-color:#ffffff;" />
+
+<img src="./fig/full-ex1.png" alt="Full image example 1" style="background-color:#ffffff;" />
 
 ## References
 

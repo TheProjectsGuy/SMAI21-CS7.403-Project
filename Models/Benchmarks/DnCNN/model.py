@@ -149,15 +149,20 @@ mse_loss = losses.MeanSquaredError()
 mse_loss(y_fimgs[i], x_fimgs[i]).numpy()
 
 # %% Test performance
-plt.figure(figsize=(10, 10))
-plt.subplot(1,2,1)
+plt.figure(figsize=(10, 15))
+plt.subplot(1,3,1)
+plt.title("Noisy")
 plt.imshow(x_imgs[i])
-plt.subplot(1,2,2)
+plt.subplot(1,3,2)
+plt.title("Estimated")
 res_pred = model(x_fimgs[[i]]).numpy()[0]
 y_pred = x_fimgs[i] - res_pred
 y_predf = (255*(y_pred - np.min(y_pred))/np.ptp(y_pred))
 y_pred = y_predf.astype(np.uint8)
 plt.imshow(y_pred)
+plt.subplot(1,3,3)
+plt.title("True")
+plt.imshow(y_imgs[i])
 mse_loss = losses.MeanSquaredError()
 mse_loss(y_fimgs[i], y_predf).numpy()
 
@@ -183,5 +188,36 @@ _y_pred = _y_predf.astype(np.uint8)
 plt.imshow(_y_pred)
 if np.allclose(y_predf, _y_predf):
     print("The model was saved correctly")
+
+# %% Test on a full image
+from Pipelines import imgs_add_awgn
+
+# %% Pick a random test image
+k = np.random.randint(0, len(test68_images))
+x_img_clean = test68_images[k]
+plt.figure(figsize=(15, 20))
+plt.subplot(1,3,1)
+plt.title("Clean")
+plt.imshow(x_img_clean)
+plt.subplot(1,3,2)
+plt.title("Noisy")
+x_noisy = imgs_add_awgn([x_img_clean], 25)[0]
+plt.imshow(x_noisy)
+# Reconstruction
+plt.subplot(1,3,3)
+plt.title("Reconstruction")
+y_pred = np.zeros_like(x_noisy)
+for i in range(0, y_pred.shape[0], 50):
+    for j in range(0, y_pred.shape[1], 50):
+        if y_pred.shape[0] - i >= 50 and y_pred.shape[1] - j >= 50:
+            # Extract noisy patch
+            noisy_patch = x_noisy[i:i+50, j:j+50, :]
+            # Run it through model to get residual
+            patch_res = model(noisy_patch.reshape(1, 50, 50, 3)).\
+                numpy()[0]
+            # Clean image
+            clean_im = noisy_patch - patch_res
+            y_pred[i:i+50,j:j+50] = clean_im
+plt.imshow(y_pred)
 
 # %%
